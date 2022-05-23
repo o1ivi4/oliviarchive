@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>oliviarchive</title>
+    <link rel="stylesheet" href="/styles.css" />
+    <!-- loading bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+</head>
+<body>
+    <h1> oliviarchive </h1>
+
+    <nav class="navbar justify-content-center navbar-expand-lg navbar-light bg-light">
+        <!-- <a class="navbar-brand" href="/">oliviarchive</a> -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent" style="text-align:center;">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">recipes </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/new">new recipe </a>
+                </li>
+            </ul>       
+        </div>
+    </nav><br><br>
+
+    <!-- <form action="/recipes" method="POST">
+        <input type="text" placeholder="title" name="title">
+        <input type="text" placeholder="ingredient" name="ingredient">
+        <button type="submit">Submit</button>
+    </form> -->
+
+    <div class="container">
+        <div class="row"><h2>all recipes</h2></div><br><br>
+        <div class="row justify-content-md-center">
+            <div class="col col-lg-3">
+                <div class="row">
+                    <input type="text" id="query" name="query" placeholder="search" style="max-width:90%">
+                </div><br>
+                <div class="row checkcategories">
+                    <ul class="col-md-6">
+                        <li>
+                            <label><input type="checkbox" id="gf_c"/><span></span></label>
+                            <label class="after_check_label" for="gf_c">gf</label>
+                        </li>
+                        <li>
+                            <label><input type="checkbox" id="df_c"/><span></span></label>
+                            <label class="after_check_label" for="df_c">df</label>
+                        </li>
+                        <li>
+                            <label><input type="checkbox" id="clean_c"/><span></span></label>
+                            <label class="after_check_label" for="clean_c">clean</label>
+                        </li>
+                        <li>
+                            <label><input type="checkbox" id="veg_c"/><span></span></label>
+                            <label class="after_check_label" for="veg_c">vegan</label>
+                        </li>
+                        <li>
+                            <label><input type="checkbox" id="30min_c"/><span></span></label>
+                            <label class="after_check_label" for="30min_c"> &lt; 30 min </label>
+                        </li><br>
+                    </ul>
+                    <ul class="col-md-6">
+                        <li>
+                            <label><input type="checkbox" id="ita_c"/><span></span></label>
+                            <label class="after_check_label" for="ita_c">italian</label>
+                        </li>
+                        <li>
+                            <label><input type="checkbox" id="fr_c"/><span></span></label>
+                            <label class="after_check_label" for="fr_c">french</label>
+                        </li>
+                        <li>
+                            <label><input type="checkbox" id="tha_c"/><span></span></label>
+                            <label class="after_check_label" for="tha_c">thai</label>
+                        </li>
+                        <li>
+                            <label><input type="checkbox" id="jpn_c"/><span></span></label>
+                            <label class="after_check_label" for="jpn_c">japanese</label>
+                        </li>
+                        <li>
+                            <label><input type="checkbox" id="npl_c"/><span></span></label>
+                            <label class="after_check_label" for="npl_c">nepalese</label>
+                        </li><br>
+                    </ul>
+                </div>
+                <div class="row">
+                    <div class="checktree" id="checktree">
+                        <ul>
+                            <li>
+                                <input type="checkbox" id="node-0"/>
+                                <label><input type="checkbox"/><span></span></label>
+                                <label for="node-0">breakfast</label>
+                                <ul>
+                                    <li>
+                                        <input type="checkbox" id="node-0-0" checked="checked"/>
+                                        <label><input type="checkbox"/><span></span></label>
+                                        <label for="node-0-0">healthy</label>
+                                        <ul>
+                                            <li>
+                                                <input type="checkbox" id="node-0-0-0" checked="checked"/>
+                                                <label><input type="checkbox"/><span></span></label>
+                                                <label for="node-0-0-0">oatmeal</label>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="node-0-1" checked="checked"/>
+                                        <label><input type="checkbox"/><span></span></label>
+                                        <label for="node-0-1">muffins</label>
+                                        <ul>
+                                            <li>
+                                                <input type="checkbox" id="node-0-1-0"/>
+                                                <label><input type="checkbox"/><span></span></label>
+                                                <label for="node-0-1-0">apple</label>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" id="node-0-1-2"/>
+                                                <label><input type="checkbox"/><span></span></label>
+                                                <label for="node-0-1-2">banana</label>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" id="node-0-1-3"/>
+                                                <label><input type="checkbox"/><span></span></label>
+                                                <label for="node-0-1-3">lemon</label>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" id="node-0-1-4"/>
+                                                <label><input type="checkbox"/><span></span></label>
+                                                <label for="node-0-1-4">berry / fruit</label>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" id="node-0-1-5"/>
+                                                <label><input type="checkbox"/><span></span></label>
+                                                <label for="node-0-1-5">morning glory</label>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" id="node-0-1-6"/>
+                                                <label><input type="checkbox"/><span></span></label>
+                                                <label for="node-0-1-6">pumpkin</label>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" id="node-0-1-7"/>
+                                                <label><input type="checkbox"/><span></span></label>
+                                                <label for="node-0-1-7">zucchini</label>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" id="node-0-1-8"/>
+                                                <label><input type="checkbox"/><span></span></label>
+                                                <label for="node-0-1-8">spiced</label>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" id="node-0-1-9"/>
+                                                <label><input type="checkbox"/><span></span></label>
+                                                <label for="node-0-1-9">chocolate</label>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="node-0-2" checked="checked"/>
+                                        <label><input type="checkbox"/><span></span></label>
+                                        <label for="node-0-2">pancakes</label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="node-0-3" checked="checked"/>
+                                        <label><input type="checkbox"/><span></span></label>
+                                        <label for="node-0-3">waffles</label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="node-0-4" checked="checked"/>
+                                        <label><input type="checkbox"/><span></span></label>
+                                        <label for="node-0-4">french toast</label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="node-0-5" checked="checked"/>
+                                        <label><input type="checkbox"/><span></span></label>
+                                        <label for="node-0-5">scones</label>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="node-1"/>
+                                <label><input type="checkbox"/><span></span></label>
+                                <label for="node-1">mains</label>
+                                <ul>
+                                    <li>
+                                        <input type="checkbox" id="node-1-0" checked="checked"/>
+                                        <label><input type="checkbox"/><span></span></label>
+                                        <label for="node-1-0">soups</label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="node-1-1" checked="checked"/>
+                                        <label><input type="checkbox"/><span></span></label>
+                                        <label for="node-1-1">salads</label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="node-1-2" checked="checked"/>
+                                        <label><input type="checkbox"/><span></span></label>
+                                        <label for="node-1-2">chicken / turkey</label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="node-1-3" checked="checked"/>
+                                        <label><input type="checkbox"/><span></span></label>
+                                        <label for="node-1-3">beef</label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="node-1-4" checked="checked"/>
+                                        <label><input type="checkbox"/><span></span></label>
+                                        <label for="node-1-4">pork</label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="node-1-5" checked="checked"/>
+                                        <label><input type="checkbox"/><span></span></label>
+                                        <label for="node-1-5">seafood</label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="node-1-6" checked="checked"/>
+                                        <label><input type="checkbox"/><span></span></label>
+                                        <label for="node-1-6">tofu</label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="node-1-7" checked="checked"/>
+                                        <label><input type="checkbox"/><span></span></label>
+                                        <label for="node-1-7">vegetarian</label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="node-1-8" checked="checked"/>
+                                        <label><input type="checkbox"/><span></span></label>
+                                        <label for="node-1-8">pasta</label>
+                                    </li>
+                                    <ul>
+                                        <li>
+                                            <input type="checkbox" id="node-1-8-0" checked="checked"/>
+                                            <label><input type="checkbox"/><span></span></label>
+                                            <label for="node-1-8-0">thai</label>
+                                        </li>
+                                        <li>
+                                            <input type="checkbox" id="node-1-8-1" checked="checked"/>
+                                            <label><input type="checkbox"/><span></span></label>
+                                            <label for="node-1-8-1">"pasta"</label>
+                                        </li>
+                                    </ul>
+                                    <li>
+                                        <input type="checkbox" id="node-1-9" checked="checked"/>
+                                        <label><input type="checkbox"/><span></span></label>
+                                        <label for="node-1-9">sandwiches</label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="node-1-10" checked="checked"/>
+                                        <label><input type="checkbox"/><span></span></label>
+                                        <label for="node-1-10">pizza</label>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="node-2"/>
+                                <label><input type="checkbox"/><span></span></label>
+                                <label for="node-2">desserts</label>
+                                <ul>
+                                    <li>
+                                        <input type="checkbox" id="node-2-0" checked="checked"/>
+                                        <label><input type="checkbox"/><span></span></label>
+                                        <label for="node-2-0">cakes</label>
+                                        <ul>
+                                            <li>
+                                                <input type="checkbox" id="node-2-0-0" checked="checked"/>
+                                                <label><input type="checkbox"/><span></span></label>
+                                                <label for="node-2-0-0">spiced</label>
+                                                <ul>
+                                                    <li>
+                                                        <input type="checkbox" id="node-2-0-0-0" checked="checked"/>
+                                                        <label><input type="checkbox"/><span></span></label>
+                                                        <label for="node-2-0-0-0">apple</label>
+                                                    </li>
+                                                    <li>
+                                                        <input type="checkbox" id="node-2-0-0-1" checked="checked"/>
+                                                        <label><input type="checkbox"/><span></span></label>
+                                                        <label for="node-2-0-0-1">pumpkin</label>
+                                                    </li>
+                                                    <li>
+                                                        <input type="checkbox" id="node-2-0-0-2" checked="checked"/>
+                                                        <label><input type="checkbox"/><span></span></label>
+                                                        <label for="node-2-0-0-2">coffee cake</label>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" id="node-2-0-1" checked="checked"/>
+                                                <label><input type="checkbox"/><span></span></label>
+                                                <label for="node-2-0-1">berry</label>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" id="node-2-0-2" checked="checked"/>
+                                                <label><input type="checkbox"/><span></span></label>
+                                                <label for="node-2-0-2">carrot</label>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" id="node-2-0-3" checked="checked"/>
+                                                <label><input type="checkbox"/><span></span></label>
+                                                <label for="node-2-0-3">chocolate</label>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" id="node-2-0-4" checked="checked"/>
+                                                <label><input type="checkbox"/><span></span></label>
+                                                <label for="node-2-0-4">vanilla</label>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" id="node-2-0-5" checked="checked"/>
+                                                <label><input type="checkbox"/><span></span></label>
+                                                <label for="node-2-0-5">lemon</label>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" id="node-2-0-6" checked="checked"/>
+                                                <label><input type="checkbox"/><span></span></label>
+                                                <label for="node-2-0-6">banana</label>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" id="node-2-0-7" checked="checked"/>
+                                                <label><input type="checkbox"/><span></span></label>
+                                                <label for="node-2-0-7">coconut</label>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" id="node-2-0-8" checked="checked"/>
+                                                <label><input type="checkbox"/><span></span></label>
+                                                <label for="node-2-0-8">cheesecake</label>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" id="node-2-0-9" checked="checked"/>
+                                                <label><input type="checkbox"/><span></span></label>
+                                                <label for="node-2-0-9">mug</label>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" id="node-2-0-10" checked="checked"/>
+                                                <label><input type="checkbox"/><span></span></label>
+                                                <label for="node-2-0-10">tart</label>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="node-2-1" checked="checked"/>
+                                        <label><input type="checkbox"/><span></span></label>
+                                        <label for="node-2-1">quick breads</label>
+                                        <ul>
+                                            <li>
+                                                <input type="checkbox" id="node-2-1-0" checked="checked"/>
+                                                <label><input type="checkbox"/><span></span></label>
+                                                <label for="node-2-1-0">apple</label>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" id="node-2-1-1" checked="checked"/>
+                                                <label><input type="checkbox"/><span></span></label>
+                                                <label for="node-2-1-1">banana</label>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" id="node-2-1-2" checked="checked"/>
+                                                <label><input type="checkbox"/><span></span></label>
+                                                <label for="node-2-1-2">pumpkin</label>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" id="node-2-1-3" checked="checked"/>
+                                                <label><input type="checkbox"/><span></span></label>
+                                                <label for="node-2-1-3">zucchini</label>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" id="node-2-1-4" checked="checked"/>
+                                                <label><input type="checkbox"/><span></span></label>
+                                                <label for="node-2-1-4">lemon</label>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" id="node-2-1-5" checked="checked"/>
+                                                <label><input type="checkbox"/><span></span></label>
+                                                <label for="node-2-1-5">raspberry</label>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="node-2-2" checked="checked"/>
+                                        <label><input type="checkbox"/><span></span></label>
+                                        <label for="node-2-2">donuts</label>
+                                        <ul>
+                                            <li>
+                                                <input type="checkbox" id="node-2-2-0" checked="checked"/>
+                                                <label><input type="checkbox"/><span></span></label>
+                                                <label for="node-2-1-0">cider</label>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" id="node-2-2-1" checked="checked"/>
+                                                <label><input type="checkbox"/><span></span></label>
+                                                <label for="node-2-1-1">pumpkin spice</label>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" id="node-2-2-2" checked="checked"/>
+                                                <label><input type="checkbox"/><span></span></label>
+                                                <label for="node-2-1-2">vanilla</label>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" id="node-2-2-3" checked="checked"/>
+                                                <label><input type="checkbox"/><span></span></label>
+                                                <label for="node-2-1-3">filled</label>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" id="node-2-2-4" checked="checked"/>
+                                                <label><input type="checkbox"/><span></span></label>
+                                                <label for="node-2-1-4">berry</label>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" id="node-2-2-5" checked="checked"/>
+                                                <label><input type="checkbox"/><span></span></label>
+                                                <label for="node-2-1-5">lemon</label>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="node-2-3" checked="checked"/>
+                                        <label><input type="checkbox"/><span></span></label>
+                                        <label for="node-2-3">cookies</label>
+                                        <ul>
+                                            <li>
+                                                <input type="checkbox" id="node-2-3-0" checked="checked"/>
+                                                <label><input type="checkbox"/><span></span></label>
+                                                <label for="node-2-3-0">chocolate</label>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" id="node-2-3-1" checked="checked"/>
+                                                <label><input type="checkbox"/><span></span></label>
+                                                <label for="node-2-3-1">oatmeal</label>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" id="node-2-3-2" checked="checked"/>
+                                                <label><input type="checkbox"/><span></span></label>
+                                                <label for="node-2-3-2">lemon</label>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" id="node-2-3-3" checked="checked"/>
+                                                <label><input type="checkbox"/><span></span></label>
+                                                <label for="node-2-3-3">no bakes</label>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" id="node-2-3-4" checked="checked"/>
+                                                <label><input type="checkbox"/><span></span></label>
+                                                <label for="node-2-3-4">sugar</label>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" id="node-2-3-5" checked="checked"/>
+                                                <label><input type="checkbox"/><span></span></label>
+                                                <label for="node-2-3-5">spiced</label>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" id="node-2-3-6" checked="checked"/>
+                                                <label><input type="checkbox"/><span></span></label>
+                                                <label for="node-2-3-6">kitchen sink</label>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" id="node-2-3-7" checked="checked"/>
+                                                <label><input type="checkbox"/><span></span></label>
+                                                <label for="node-2-3-7">macaroons</label>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" id="node-2-3-8" checked="checked"/>
+                                                <label><input type="checkbox"/><span></span></label>
+                                                <label for="node-2-3-8">banana</label>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" id="node-2-3-9" checked="checked"/>
+                                                <label><input type="checkbox"/><span></span></label>
+                                                <label for="node-2-3-9">carrot</label>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="node-2-4" checked="checked"/>
+                                        <label><input type="checkbox"/><span></span></label>
+                                        <label for="node-2-4">pies</label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="node-2-5" checked="checked"/>
+                                        <label><input type="checkbox"/><span></span></label>
+                                        <label for="node-2-5">crisp</label>
+                                        <ul>
+                                            <li>
+                                                <input type="checkbox" id="node-2-5-0" checked="checked"/>
+                                                <label><input type="checkbox"/><span></span></label>
+                                                <label for="node-2-5-0">apple</label>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="node-2-6" checked="checked"/>
+                                        <label><input type="checkbox"/><span></span></label>
+                                        <label for="node-2-6">bars</label>
+                                        <ul>
+                                            <li>
+                                                <input type="checkbox" id="node-2-6-0" checked="checked"/>
+                                                <label><input type="checkbox"/><span></span></label>
+                                                <label for="node-2-6-0">brownies</label>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" id="node-2-6-1" checked="checked"/>
+                                                <label><input type="checkbox"/><span></span></label>
+                                                <label for="node-2-6-1">fruit</label>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="node-2-7" checked="checked"/>
+                                        <label><input type="checkbox"/><span></span></label>
+                                        <label for="node-2-7">cinnamon rolls</label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="node-2-8" checked="checked"/>
+                                        <label><input type="checkbox"/><span></span></label>
+                                        <label for="node-2-8">choux</label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="node-2-9" checked="checked"/>
+                                        <label><input type="checkbox"/><span></span></label>
+                                        <label for="node-2-9">macarons</label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="node-2-10" checked="checked"/>
+                                        <label><input type="checkbox"/><span></span></label>
+                                        <label for="node-2-10">icing</label>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="node-3" checked="checked"/>
+                                <label><input type="checkbox"/><span></span></label>
+                                <label for="node-3">bread</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="node-4"/>
+                                <label><input type="checkbox"/><span></span></label>
+                                <label for="node-4">sides</label>
+                                <ul>
+                                    <li>
+                                        <input type="checkbox" id="node-4-0" checked="checked"/>
+                                        <label><input type="checkbox"/><span></span></label>
+                                        <label for="node-4-0">vegetables</label>
+                                        <ul>
+                                            <li>
+                                                <input type="checkbox" id="node-4-0-0" checked="checked"/>
+                                                <label><input type="checkbox"/><span></span></label>
+                                                <label for="node-4-0-0">sweet potato</label>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" id="node-4-0-1" checked="checked"/>
+                                                <label><input type="checkbox"/><span></span></label>
+                                                <label for="node-4-0-1">potato</label>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" id="node-4-0-2" checked="checked"/>
+                                                <label><input type="checkbox"/><span></span></label>
+                                                <label for="node-4-0-2">carrot</label>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" id="node-4-0-3" checked="checked"/>
+                                                <label><input type="checkbox"/><span></span></label>
+                                                <label for="node-4-0-3">squash</label>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" id="node-4-0-4" checked="checked"/>
+                                                <label><input type="checkbox"/><span></span></label>
+                                                <label for="node-4-0-4">cauliflower</label>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" id="node-4-0-5" checked="checked"/>
+                                                <label><input type="checkbox"/><span></span></label>
+                                                <label for="node-4-0-5">broccoli</label>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" id="node-4-0-6" checked="checked"/>
+                                                <label><input type="checkbox"/><span></span></label>
+                                                <label for="node-4-0-6">brussels sprouts</label>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" id="node-4-0-7" checked="checked"/>
+                                                <label><input type="checkbox"/><span></span></label>
+                                                <label for="node-4-0-7">zucchini</label>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" id="node-4-0-8" checked="checked"/>
+                                                <label><input type="checkbox"/><span></span></label>
+                                                <label for="node-4-0-8">cranberry</label>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="node-4-1" checked="checked"/>
+                                        <label><input type="checkbox"/><span></span></label>
+                                        <label for="node-4-1">spreads</label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="node-4-2" checked="checked"/>
+                                        <label><input type="checkbox"/><span></span></label>
+                                        <label for="node-4-2">sauces</label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="node-4-3" checked="checked"/>
+                                        <label><input type="checkbox"/><span></span></label>
+                                        <label for="node-4-3">dips</label>
+                                        <ul>
+                                            <li>
+                                                <input type="checkbox" id="node-4-3-0" checked="checked"/>
+                                                <label><input type="checkbox"/><span></span></label>
+                                                <label for="node-4-3-0">guacamole</label>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" id="node-4-3-1" checked="checked"/>
+                                                <label><input type="checkbox"/><span></span></label>
+                                                <label for="node-4-3-1">spinach</label>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" id="node-4-3-2" checked="checked"/>
+                                                <label><input type="checkbox"/><span></span></label>
+                                                <label for="node-4-3-2">hummus</label>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="node-4-4" checked="checked"/>
+                                        <label><input type="checkbox"/><span></span></label>
+                                        <label for="node-4-4">spice blends</label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="node-4-5" checked="checked"/>
+                                        <label><input type="checkbox"/><span></span></label>
+                                        <label for="node-4-5">broths</label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="node-4-6" checked="checked"/>
+                                        <label><input type="checkbox"/><span></span></label>
+                                        <label for="node-4-6">grains</label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="node-4-7" checked="checked"/>
+                                        <label><input type="checkbox"/><span></span></label>
+                                        <label for="node-4-7">drinks</label>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col col-lg-9">
+                <div id="searchresults">
+                    <% for(var i = 0; i < recipes.length; i++) {%>
+                        <% if (i+1 === 1 || i % 3 === 0) { %>
+                            <div class="row">
+                        <% } %>
+                            <div class="col-xl-4 col-md-6">
+                                <div class="card">
+                                    <img class="card-img-top" src="..." alt="recipe img">
+                                    <div class="card-body">
+                                        <h5 class="card-title"><a href="/id/<%= recipes[i].rid %>"><%= recipes[i].title %></a></h5>
+                                    </div>
+                                </div>
+                            </div>
+                        <% if ((i % 3 === 0 && i != 0) || i === recipes.length) { %>
+                            </div>
+                        <% } %>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- <div>
+        <h2>Update Recipe</h2>
+        <p>
+            Replace first "bread" recipe with a new recipe
+        </p>
+        <button id="update-button">Replace</button>
+    </div>
+
+    <div>
+        <h2>Remove muffin!</h2>
+        <p>
+            Delete one muffin recipe. Does nothing if there are no more muffins (tragic). 
+        </p>
+        <button id="delete-button">Delete</button>
+        <div id="message"></div>
+    </div> -->
+
+    <!-- load jquery, popper, bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.5.3/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> 
+    <!-- load local js -->
+    <script src="/main.js"></script>
+</body>
+</html>

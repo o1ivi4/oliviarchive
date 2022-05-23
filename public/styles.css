@@ -1,0 +1,233 @@
+/* colors
+    1f2d16      pine tree
+    3f4f3d      rifle green
+    5a6e6c      deep space sparkle
+    748d9a      light slate gray
+    c6d0d6      light gray
+*/
+
+body {
+    font-family: "Times New Roman", Times, serif !important;
+    padding: 1em;
+}
+
+h1, h2 {
+    text-align: center;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+#cancel_btn, 
+#rm_ing_btn, 
+#rm_dir_btn {
+    background-color:#c6d0d6;
+    outline: 1px solid #aeb7bc !important;
+    color: rgb(78, 78, 78);
+    margin-top: 1em;
+}
+
+#cancel_btn:hover, 
+#rm_ing_btn:hover, 
+#rm_dir_btn:hover {
+    border-color:#82888c !important;
+}
+
+#add_ing_btn, 
+#add_dir_btn {
+    background-color:#748d9a;
+    outline: 1px solid rgb(54, 66, 65) !important;
+    color: white;
+    margin-top: 1em;
+}
+
+#add_ing_btn:hover, 
+#add_dir_btn:hover {
+    border-color:#485860 !important;
+}
+
+#create_btn {
+    background-color:#3f4f3d;
+    outline: 1px solid rgb(21, 31, 15) !important;
+    color: white;
+    margin-top: 1em;
+}
+
+#create_btn:hover {
+    border-color:#1f2d16 !important;
+}
+
+.image-upload {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+}
+
+#display-image {
+    align-self: center;
+    margin: 1em 10% 0 10%;
+    width: 80%;
+    height: 225px;
+    border: 1px solid black;
+    background-position: center;
+    background-size: cover;
+}
+
+#query {
+    border-color: rgb(170, 170, 170);
+    border-radius: 5px;
+    margin-left: 10px;
+    margin-top: 5px;
+}
+
+.after_check_label {
+    margin-left: 1em !important;
+}
+
+.checktree,
+.checktree *, 
+.checkcategories,
+.checkcategories *
+{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.checktree label[for]::before,
+.checktree label span::before, 
+.checkcategories label[for]::before,
+.checkcategories label span::before 
+{
+    border-radius: 3px;
+    display: inline-block;
+    font-size: 10px;
+    height: 15px;
+    line-height: 15px;
+    margin: 0 0 3px 0;
+    text-align: center;
+    vertical-align: middle;
+    width: 15px;
+}
+
+.checktree label[for]::before,
+.checktree label span::before
+{
+    color: #26683a;
+    content: "\25b6";
+    margin: 0 0 5px 0 !important;
+}
+ 
+.checktree li ul, 
+.checkcategories li ul
+{
+    margin: 0 0 0 22px;
+}
+ 
+.checktree *, 
+.checkcategories *
+{
+    vertical-align: middle;
+}
+
+ 
+.checktree li, 
+.checkcategories li
+{
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    user-select: none;
+    white-space: nowrap;
+}
+ 
+.checktree input[type="checkbox"], 
+.checkcategories input[type="checkbox"]
+{
+    display: none;
+}
+ 
+.checktree label, 
+.checkcategories label
+{
+    cursor: pointer;
+}
+ 
+.checktree label[for]::before, 
+.checkcategories label[for]::before
+{
+    -moz-transform: translatex(-24px);
+    -ms-transform: translatex(-24px);
+    -o-transform: translatex(-24px);
+    -webkit-transform: translatex(-24px);
+    transform: translatex(-24px);
+}
+ 
+.checktree label span::before, 
+.checkcategories label span::before
+{
+    -moz-transform: translatex(16px);
+    -ms-transform: translatex(16px);
+    -o-transform: translatex(16px);
+    -webkit-transform: translatex(16px);
+    transform: translatex(16px);
+}
+ 
+.checktree input[type="checkbox"][id]:checked ~ label[for]::before,
+.checkcategories input[type="checkbox"][id]:checked ~ label[for]::before
+{
+    content: "\25bc";
+}
+ 
+.checktree input[type="checkbox"][id]:not(:checked) ~ ul, 
+.checkcategories input[type="checkbox"][id]:not(:checked) ~ ul
+{
+    display: none;
+}
+ 
+.checktree label:not([for]), 
+.checkcategories label:not([for])
+{
+    margin: 0 8px 0 0;
+}
+ 
+.checktree label span::before, 
+.checkcategories label span::before
+{
+    border: solid 1px #000000;
+    color: #000000;
+    content: "";
+    opacity: .50;
+}
+ 
+.checktree label input:checked + span::before, 
+.checkcategories label input:checked + span::before
+{
+    content: "\2714";
+    box-shadow: 0 0 2px rgba(0, 0, 0, .25) inset;
+    opacity: 1;
+}
+
+.checktree label, 
+.checkcategories label {
+    display: inline !important;
+}
+
+.directions label {
+    padding-top: .5em;
+    float: right;
+}
+
+.navbar {
+    --bs-navbar-toggler-border-color: none !important; 
+    --bs-navbar-toggler-border-radius: none !important;
+    --bs-navbar-toggler-focus-width: none !important;
+    --bs-navbar-toggler-transition: none !important; 
+}
+
+.navbar-toggler {
+    border: none !important;
+}
