@@ -12,7 +12,7 @@
     </head>
 
     <body>
-        <h1>Recipe Details</h1>
+        <h1 class="centered">Recipe Details</h1>
 
         <nav class="navbar justify-content-center navbar-expand-lg navbar-light bg-light">
             <!-- <a class="navbar-brand" href="/">oliviarchive</a> -->
@@ -34,12 +34,56 @@
             </div>
         </nav><br><br>
 
-        <p><span class="green">Title:</span> <%= recipe.title %></p>
-        <p><span class="green">Ingredient:</span> <%= recipe.ingredient %></p>
+        <div class="container">
+            <div class="row">
+                <div class="col-1"></div>
+                <div class="col-md-10">
+                    <div class="row">
+                        <div class="d-flex justify-content-between">
+                            <h1><%= recipe.title %></h1>
+                            <button class="btn" id="print_btn" style="max-width: 10em;">print recipe</button>
+                        </div>
+                    </div>
+                    <div class="row"><p>
+                        <%= recipe.servings %> serving(s), 
+                        [<% for(var i = 0; i < recipe.category.length-1; i++) {%>
+                            <%= recipe.category[i]%>, 
+                        <% } %> <%= recipe.category[recipe.category.length-1]%> ]
+                    </p></div>
+                </div>
+                <!-- <div class="col-md-4 text-center">
+                    <div id="display-image"></div>
+                    <img src="<%= recipe.image %>" alt="<%= recipe.title %>"> -->
+                    
+                <!-- </div> -->
+                <div class="col-1"></div>
+            </div><br>
+            <div class="row">
+                <div class="col-1"></div>
+                <div class="col-sm-4">
+                    <h3>ingredients:</h3>
+                    <ul>
+                        <% for(var i = 0; i < recipe.ingredients.length; i++) {%>
+                        <li><%= recipe.ingredients[i][0]%> <%= recipe.ingredients[i][1]%> <%= recipe.ingredients[i][2]%></li>
+                        <% } %>
+                    </ul>
+                </div>
+                <div class="col-sm-6">
+                    <h3>directions:</h3>                        
+                    <ol>
+                        <% for(var i = 0; i < recipe.directions.length; i++) {%>
+                        <li><%= recipe.directions[i]%></li>
+                        <% } %>
+                    </ol>
+                </div>
+                <div class="col-1"></div>
+            </div>
+        </div>
         
-        <!-- load bootstrap -->
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy" crossorigin="anonymous"></script>
+        <!-- load jquery, popper, bootstrap -->
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.5.3/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> 
         <!-- load local js -->
         <script src="/main.js"></script>
     </body>

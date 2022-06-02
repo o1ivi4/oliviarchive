@@ -13,7 +13,7 @@
 
     <body>
 
-        <h1>oliviarchive</h1>
+        <h1 class="centered">oliviarchive</h1>
         
         <nav class="navbar justify-content-center navbar-expand-lg navbar-light bg-light">
             <!-- <a class="navbar-brand" href="/">oliviarchive</a> -->
@@ -32,51 +32,64 @@
             </div>
         </nav><br><br>
 
-        <h1>create new recipe</h1>
+        <h1 class="centered">create new recipe</h1>
         <br>
+
+        <!-- <form action="/recipes" method="POST">
+            <input type="text" placeholder="title" name="title">
+            <input type="text" placeholder="ingredient" name="ingredient">
+            <button type="submit">Submit</button>
+        </form> -->
 
         <div class="container">
             <div class="col-2"></div>
             <div class="col-12">
-                <form class="needs-validation" novalidate>
+                <form class="needs-validation" action="/recipes" method="POST">
                     <div class="row">
                         <div class="col-sm-9">
                             <label for="title"><h5>title</h5></label>
-                            <input type="text" class="form-control" id="title" placeholder="recipe title" required>
+                            <input type="text" class="form-control" name="title" placeholder="recipe title" required>
                             <div class="invalid-feedback">please specify a title</div>
                         </div>
                         <div class="col-sm-3">
                             <label for="servings"><h5>servings</h5></label>
-                            <input type="text" class="form-control" id="servings" placeholder="x" required>
+                            <input type="text" class="form-control" name="servings" placeholder="x" required>
                             <div class="invalid-feedback">please specify servings</div>
+                        </div>
+                    </div><br>
+
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <label for="notes"><h5>notes</h5></label>
+                            <input type="text" class="form-control" name="notes" placeholder="tips, tricks, hilarious backstory... ">
                         </div>
                     </div><br>
 
                     <div id="ingredients">
                         <div class="row justify-content-md-center">
-                            <div class="col-5" style="text-align: center;">
-                                <h5>ingredient</h5>
-                            </div>
                             <div class="col-2" style="text-align: center;">
                                 <h5>amount</h5>
                             </div>
-                            <div class="col-5" style="text-align: center;">
+                            <div class="col-4" style="text-align: center;">
                                 <h5>unit</h5>
+                            </div>
+                            <div class="col-6" style="text-align: center;">
+                                <h5>ingredient</h5>
                             </div>
                         </div>
                         <% for(var i = 1; i < 4; i++) {%>
                         <div class="ingredients row mb-2" id="ingrow<%=i%>">
-                            <div class="col-5">
-                                <input type="text" class="form-control" id="ing_<%=i%>" placeholder="ingredient <%=i%>" required>
-                                <div class="invalid-feedback">specify an ingredient</div>
-                            </div>
                             <div class="col-2">
-                                <input type="text" class="form-control" id="amt_<%=i%>" placeholder="amount <%=i%>" required>
+                                <input type="text" class="form-control" id="amt_<%=i%>" name="ingredients" placeholder="amount <%=i%>" required>
                                 <div class="invalid-feedback">specify an amount</div>
                             </div>
-                            <div class="col-5">
-                                <input type="text" class="form-control" id="unit_<%=i%>" placeholder="unit <%=i%>" required>
+                            <div class="col-4">
+                                <input type="text" class="form-control" id="unit_<%=i%>" name="ingredients" placeholder="unit <%=i%>" required>
                                 <div class="invalid-feedback">specify a unit</div>
+                            </div>
+                            <div class="col-6">
+                                <input type="text" class="form-control" id="ing_<%=i%>" name="ingredients" placeholder="ingredient <%=i%>" required>
+                                <div class="invalid-feedback">specify an ingredient</div>
                             </div>
                         </div>
                         <% } %>
@@ -94,7 +107,7 @@
                                 <div class="col-1 m-0">
                                     <label for="step_<%=i%>"><%=i%>. </label>
                                 </div><div class="col-11">
-                                    <input type="text" class="form-control" id="step_<%=i%>" placeholder="step <%=i%>" style="margin-bottom: .5em;" required>
+                                    <input type="text" class="form-control" id="step_<%=i%>" name="directions" placeholder="step <%=i%>" style="margin-bottom: .5em;" required>
                                     <div class="invalid-feedback">specify directions</div>
                                 </div>
                             </div>
@@ -107,604 +120,606 @@
 
                     <br>
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <h5>categories</h5>
                             <div class="row categories justify-content-center">
-                                <div class="col-sm-6 checkcategories">
+                                <div class="col-sm-4 checkcategories">
                                     <ul>
                                         <li>
-                                            <label><input type="checkbox" id="gf_c"/><span></span></label>
+                                            <label><input type="checkbox" id="gf_c" name="category" value="gf"/><span></span></label>
                                             <label class="after_check_label" for="gf_c">gf</label>
                                         </li>
                                         <li>
-                                            <label><input type="checkbox" id="df_c"/><span></span></label>
+                                            <label><input type="checkbox" id="df_c" name="category" value="df"/><span></span></label>
                                             <label class="after_check_label" for="df_c">df</label>
                                         </li>
                                         <li>
-                                            <label><input type="checkbox" id="clean_c"/><span></span></label>
+                                            <label><input type="checkbox" id="clean_c" name="category" value="clean"/><span></span></label>
                                             <label class="after_check_label" for="clean_c">clean</label>
                                         </li>
                                         <li>
-                                            <label><input type="checkbox" id="veg_c"/><span></span></label>
+                                            <label><input type="checkbox" id="veg_c" name="category" value="vegan"/><span></span></label>
                                             <label class="after_check_label" for="veg_c">vegan</label>
                                         </li>
                                         <li>
-                                            <label><input type="checkbox" id="30min_c"/><span></span></label>
+                                            <label><input type="checkbox" id="30min_c" name="category" value="30min"/><span></span></label>
                                             <label class="after_check_label" for="30min_c"> &lt; 30 min </label>
                                         </li><br>
                                     </ul>
+                                </div>
+                                <div class="col-sm-4 checkcategories">
                                     <ul>
                                         <li>
-                                            <label><input type="checkbox" id="ita_c"/><span></span></label>
+                                            <label><input type="checkbox" id="ita_c" name="category" value="italian"/><span></span></label>
                                             <label class="after_check_label" for="ita_c">italian</label>
                                         </li>
                                         <li>
-                                            <label><input type="checkbox" id="fr_c"/><span></span></label>
+                                            <label><input type="checkbox" id="fr_c" name="category" value="french"/><span></span></label>
                                             <label class="after_check_label" for="fr_c">french</label>
                                         </li>
                                         <li>
-                                            <label><input type="checkbox" id="tha_c"/><span></span></label>
+                                            <label><input type="checkbox" id="tha_c" name="category" value="thai"/><span></span></label>
                                             <label class="after_check_label" for="tha_c">thai</label>
                                         </li>
                                         <li>
-                                            <label><input type="checkbox" id="jpn_c"/><span></span></label>
+                                            <label><input type="checkbox" id="jpn_c" name="category" value="japanese"/><span></span></label>
                                             <label class="after_check_label" for="jpn_c">japanese</label>
                                         </li>
                                         <li>
-                                            <label><input type="checkbox" id="npl_c"/><span></span></label>
+                                            <label><input type="checkbox" id="npl_c" name="category" value="nepalese"/><span></span></label>
                                             <label class="after_check_label" for="npl_c">nepalese</label>
                                         </li><br>
                                     </ul>
                                 </div>
-                                <div class="col-sm-6 checktree">
+                                <div class="col-sm-4 checktree">
                                     <ul>
                                         <li>
-                                            <input type="checkbox" id="node-0"/>
+                                            <input type="checkbox" id="node-0" name="category" value="breakfast"/>
                                             <label><input type="checkbox"/><span></span></label>
                                             <label for="node-0">breakfast</label>
                                             <ul>
                                                 <li>
-                                                    <input type="checkbox" id="node-0-0" checked="checked"/>
+                                                    <input type="checkbox" id="node-0-0"  name="category" value="healthy"/>
                                                     <label><input type="checkbox"/><span></span></label>
                                                     <label for="node-0-0">healthy</label>
                                                     <ul>
                                                         <li>
-                                                            <input type="checkbox" id="node-0-0-0" checked="checked"/>
+                                                            <input type="checkbox" id="node-0-0-0"  name="category" value="oatmeal"/>
                                                             <label><input type="checkbox"/><span></span></label>
                                                             <label for="node-0-0-0">oatmeal</label>
                                                         </li>
                                                     </ul>
                                                 </li>
                                                 <li>
-                                                    <input type="checkbox" id="node-0-1" checked="checked"/>
+                                                    <input type="checkbox" id="node-0-1"  name="category" value="muffins"/>
                                                     <label><input type="checkbox"/><span></span></label>
                                                     <label for="node-0-1">muffins</label>
                                                     <ul>
                                                         <li>
-                                                            <input type="checkbox" id="node-0-1-0"/>
+                                                            <input type="checkbox" id="node-0-1-0" name="category" value="apple"/>
                                                             <label><input type="checkbox"/><span></span></label>
                                                             <label for="node-0-1-0">apple</label>
                                                         </li>
                                                         <li>
-                                                            <input type="checkbox" id="node-0-1-2"/>
+                                                            <input type="checkbox" id="node-0-1-2" name="category" value="banana"/>
                                                             <label><input type="checkbox"/><span></span></label>
                                                             <label for="node-0-1-2">banana</label>
                                                         </li>
                                                         <li>
-                                                            <input type="checkbox" id="node-0-1-3"/>
+                                                            <input type="checkbox" id="node-0-1-3" name="category" value="lemon"/>
                                                             <label><input type="checkbox"/><span></span></label>
                                                             <label for="node-0-1-3">lemon</label>
                                                         </li>
                                                         <li>
-                                                            <input type="checkbox" id="node-0-1-4"/>
+                                                            <input type="checkbox" id="node-0-1-4" name="category" value="berry/fruit"/>
                                                             <label><input type="checkbox"/><span></span></label>
                                                             <label for="node-0-1-4">berry / fruit</label>
                                                         </li>
                                                         <li>
-                                                            <input type="checkbox" id="node-0-1-5"/>
+                                                            <input type="checkbox" id="node-0-1-5" name="category" value="morning glory"/>
                                                             <label><input type="checkbox"/><span></span></label>
                                                             <label for="node-0-1-5">morning glory</label>
                                                         </li>
                                                         <li>
-                                                            <input type="checkbox" id="node-0-1-6"/>
+                                                            <input type="checkbox" id="node-0-1-6" name="category" value="pumpkin"/>
                                                             <label><input type="checkbox"/><span></span></label>
                                                             <label for="node-0-1-6">pumpkin</label>
                                                         </li>
                                                         <li>
-                                                            <input type="checkbox" id="node-0-1-7"/>
+                                                            <input type="checkbox" id="node-0-1-7" name="category" value="zucchini"/>
                                                             <label><input type="checkbox"/><span></span></label>
                                                             <label for="node-0-1-7">zucchini</label>
                                                         </li>
                                                         <li>
-                                                            <input type="checkbox" id="node-0-1-8"/>
+                                                            <input type="checkbox" id="node-0-1-8" name="category" value="spiced"/>
                                                             <label><input type="checkbox"/><span></span></label>
                                                             <label for="node-0-1-8">spiced</label>
                                                         </li>
                                                         <li>
-                                                            <input type="checkbox" id="node-0-1-9"/>
+                                                            <input type="checkbox" id="node-0-1-9" name="category" value="chocolate"/>
                                                             <label><input type="checkbox"/><span></span></label>
                                                             <label for="node-0-1-9">chocolate</label>
                                                         </li>
                                                     </ul>
                                                 </li>
                                                 <li>
-                                                    <input type="checkbox" id="node-0-2" checked="checked"/>
+                                                    <input type="checkbox" id="node-0-2" name="category" value="pancakes"/>
                                                     <label><input type="checkbox"/><span></span></label>
                                                     <label for="node-0-2">pancakes</label>
                                                 </li>
                                                 <li>
-                                                    <input type="checkbox" id="node-0-3" checked="checked"/>
+                                                    <input type="checkbox" id="node-0-3" name="category" value="waffles"/>
                                                     <label><input type="checkbox"/><span></span></label>
                                                     <label for="node-0-3">waffles</label>
                                                 </li>
                                                 <li>
-                                                    <input type="checkbox" id="node-0-4" checked="checked"/>
+                                                    <input type="checkbox" id="node-0-4" name="category" value="french toast"/>
                                                     <label><input type="checkbox"/><span></span></label>
                                                     <label for="node-0-4">french toast</label>
                                                 </li>
                                                 <li>
-                                                    <input type="checkbox" id="node-0-5" checked="checked"/>
+                                                    <input type="checkbox" id="node-0-5" name="category" value="scones"/>
                                                     <label><input type="checkbox"/><span></span></label>
                                                     <label for="node-0-5">scones</label>
                                                 </li>
                                             </ul>
                                         </li>
                                         <li>
-                                            <input type="checkbox" id="node-1"/>
+                                            <input type="checkbox" id="node-1" name="category" value="mains"/>
                                             <label><input type="checkbox"/><span></span></label>
                                             <label for="node-1">mains</label>
                                             <ul>
                                                 <li>
-                                                    <input type="checkbox" id="node-1-0" checked="checked"/>
+                                                    <input type="checkbox" id="node-1-0" name="category" value="soups"/>
                                                     <label><input type="checkbox"/><span></span></label>
                                                     <label for="node-1-0">soups</label>
                                                 </li>
                                                 <li>
-                                                    <input type="checkbox" id="node-1-1" checked="checked"/>
+                                                    <input type="checkbox" id="node-1-1" name="category" value="salads"/>
                                                     <label><input type="checkbox"/><span></span></label>
                                                     <label for="node-1-1">salads</label>
                                                 </li>
                                                 <li>
-                                                    <input type="checkbox" id="node-1-2" checked="checked"/>
+                                                    <input type="checkbox" id="node-1-2" name="category" value="chicken/turkey"/>
                                                     <label><input type="checkbox"/><span></span></label>
                                                     <label for="node-1-2">chicken / turkey</label>
                                                 </li>
                                                 <li>
-                                                    <input type="checkbox" id="node-1-3" checked="checked"/>
+                                                    <input type="checkbox" id="node-1-3" name="category" value="beef"/>
                                                     <label><input type="checkbox"/><span></span></label>
                                                     <label for="node-1-3">beef</label>
                                                 </li>
                                                 <li>
-                                                    <input type="checkbox" id="node-1-4" checked="checked"/>
+                                                    <input type="checkbox" id="node-1-4" name="category" value="pork"/>
                                                     <label><input type="checkbox"/><span></span></label>
                                                     <label for="node-1-4">pork</label>
                                                 </li>
                                                 <li>
-                                                    <input type="checkbox" id="node-1-5" checked="checked"/>
+                                                    <input type="checkbox" id="node-1-5" name="category" value="seafood"/>
                                                     <label><input type="checkbox"/><span></span></label>
                                                     <label for="node-1-5">seafood</label>
                                                 </li>
                                                 <li>
-                                                    <input type="checkbox" id="node-1-6" checked="checked"/>
+                                                    <input type="checkbox" id="node-1-6" name="category" value="tofu"/>
                                                     <label><input type="checkbox"/><span></span></label>
                                                     <label for="node-1-6">tofu</label>
                                                 </li>
                                                 <li>
-                                                    <input type="checkbox" id="node-1-7" checked="checked"/>
+                                                    <input type="checkbox" id="node-1-7" name="category" value="vegetarian"/>
                                                     <label><input type="checkbox"/><span></span></label>
                                                     <label for="node-1-7">vegetarian</label>
                                                 </li>
                                                 <li>
-                                                    <input type="checkbox" id="node-1-8" checked="checked"/>
+                                                    <input type="checkbox" id="node-1-8" name="category" value="pasta"/>
                                                     <label><input type="checkbox"/><span></span></label>
                                                     <label for="node-1-8">pasta</label>
                                                 </li>
                                                 <ul>
                                                     <li>
-                                                        <input type="checkbox" id="node-1-8-0" checked="checked"/>
+                                                        <input type="checkbox" id="node-1-8-0" name="category" value="thai"/>
                                                         <label><input type="checkbox"/><span></span></label>
                                                         <label for="node-1-8-0">thai</label>
                                                     </li>
                                                     <li>
-                                                        <input type="checkbox" id="node-1-8-1" checked="checked"/>
+                                                        <input type="checkbox" id="node-1-8-1" name="category" value="pasta-ish"/>
                                                         <label><input type="checkbox"/><span></span></label>
-                                                        <label for="node-1-8-1">"pasta"</label>
+                                                        <label for="node-1-8-1">pasta-ish</label>
                                                     </li>
                                                 </ul>
                                                 <li>
-                                                    <input type="checkbox" id="node-1-9" checked="checked"/>
+                                                    <input type="checkbox" id="node-1-9" name="category" value="sandwiches"/>
                                                     <label><input type="checkbox"/><span></span></label>
                                                     <label for="node-1-9">sandwiches</label>
                                                 </li>
                                                 <li>
-                                                    <input type="checkbox" id="node-1-10" checked="checked"/>
+                                                    <input type="checkbox" id="node-1-10" name="category" value="pizza"/>
                                                     <label><input type="checkbox"/><span></span></label>
                                                     <label for="node-1-10">pizza</label>
                                                 </li>
                                             </ul>
                                         </li>
                                         <li>
-                                            <input type="checkbox" id="node-2"/>
+                                            <input type="checkbox" id="node-2" name="category" value="desserts"/>
                                             <label><input type="checkbox"/><span></span></label>
                                             <label for="node-2">desserts</label>
                                             <ul>
                                                 <li>
-                                                    <input type="checkbox" id="node-2-0" checked="checked"/>
+                                                    <input type="checkbox" id="node-2-0" name="category" value="cakes"/>
                                                     <label><input type="checkbox"/><span></span></label>
                                                     <label for="node-2-0">cakes</label>
                                                     <ul>
                                                         <li>
-                                                            <input type="checkbox" id="node-2-0-0" checked="checked"/>
+                                                            <input type="checkbox" id="node-2-0-0" name="category" value="spiced"/>
                                                             <label><input type="checkbox"/><span></span></label>
                                                             <label for="node-2-0-0">spiced</label>
                                                             <ul>
                                                                 <li>
-                                                                    <input type="checkbox" id="node-2-0-0-0" checked="checked"/>
+                                                                    <input type="checkbox" id="node-2-0-0-0" name="category" value="apple"/>
                                                                     <label><input type="checkbox"/><span></span></label>
                                                                     <label for="node-2-0-0-0">apple</label>
                                                                 </li>
                                                                 <li>
-                                                                    <input type="checkbox" id="node-2-0-0-1" checked="checked"/>
+                                                                    <input type="checkbox" id="node-2-0-0-1" name="category" value="pumpkin"/>
                                                                     <label><input type="checkbox"/><span></span></label>
                                                                     <label for="node-2-0-0-1">pumpkin</label>
                                                                 </li>
                                                                 <li>
-                                                                    <input type="checkbox" id="node-2-0-0-2" checked="checked"/>
+                                                                    <input type="checkbox" id="node-2-0-0-2" name="category" value="coffee cake"/>
                                                                     <label><input type="checkbox"/><span></span></label>
                                                                     <label for="node-2-0-0-2">coffee cake</label>
                                                                 </li>
                                                             </ul>
                                                         </li>
                                                         <li>
-                                                            <input type="checkbox" id="node-2-0-1" checked="checked"/>
+                                                            <input type="checkbox" id="node-2-0-1" name="category" value="berry"/>
                                                             <label><input type="checkbox"/><span></span></label>
                                                             <label for="node-2-0-1">berry</label>
                                                         </li>
                                                         <li>
-                                                            <input type="checkbox" id="node-2-0-2" checked="checked"/>
+                                                            <input type="checkbox" id="node-2-0-2" name="category" value="carrot"/>
                                                             <label><input type="checkbox"/><span></span></label>
                                                             <label for="node-2-0-2">carrot</label>
                                                         </li>
                                                         <li>
-                                                            <input type="checkbox" id="node-2-0-3" checked="checked"/>
+                                                            <input type="checkbox" id="node-2-0-3" name="category" value="chocolate"/>
                                                             <label><input type="checkbox"/><span></span></label>
                                                             <label for="node-2-0-3">chocolate</label>
                                                         </li>
                                                         <li>
-                                                            <input type="checkbox" id="node-2-0-4" checked="checked"/>
+                                                            <input type="checkbox" id="node-2-0-4" name="category" value="vanilla"/>
                                                             <label><input type="checkbox"/><span></span></label>
                                                             <label for="node-2-0-4">vanilla</label>
                                                         </li>
                                                         <li>
-                                                            <input type="checkbox" id="node-2-0-5" checked="checked"/>
+                                                            <input type="checkbox" id="node-2-0-5" name="category" value="lemon"/>
                                                             <label><input type="checkbox"/><span></span></label>
                                                             <label for="node-2-0-5">lemon</label>
                                                         </li>
                                                         <li>
-                                                            <input type="checkbox" id="node-2-0-6" checked="checked"/>
+                                                            <input type="checkbox" id="node-2-0-6" name="category" value="banana"/>
                                                             <label><input type="checkbox"/><span></span></label>
                                                             <label for="node-2-0-6">banana</label>
                                                         </li>
                                                         <li>
-                                                            <input type="checkbox" id="node-2-0-7" checked="checked"/>
+                                                            <input type="checkbox" id="node-2-0-7" name="category" value="coconut"/>
                                                             <label><input type="checkbox"/><span></span></label>
                                                             <label for="node-2-0-7">coconut</label>
                                                         </li>
                                                         <li>
-                                                            <input type="checkbox" id="node-2-0-8" checked="checked"/>
+                                                            <input type="checkbox" id="node-2-0-8" name="category" value="cheesecake"/>
                                                             <label><input type="checkbox"/><span></span></label>
                                                             <label for="node-2-0-8">cheesecake</label>
                                                         </li>
                                                         <li>
-                                                            <input type="checkbox" id="node-2-0-9" checked="checked"/>
+                                                            <input type="checkbox" id="node-2-0-9" name="category" value="mug"/>
                                                             <label><input type="checkbox"/><span></span></label>
                                                             <label for="node-2-0-9">mug</label>
                                                         </li>
                                                         <li>
-                                                            <input type="checkbox" id="node-2-0-10" checked="checked"/>
+                                                            <input type="checkbox" id="node-2-0-10" name="category" value="tart"/>
                                                             <label><input type="checkbox"/><span></span></label>
                                                             <label for="node-2-0-10">tart</label>
                                                         </li>
                                                     </ul>
                                                 </li>
                                                 <li>
-                                                    <input type="checkbox" id="node-2-1" checked="checked"/>
+                                                    <input type="checkbox" id="node-2-1" name="category" value="quick breads"/>
                                                     <label><input type="checkbox"/><span></span></label>
                                                     <label for="node-2-1">quick breads</label>
                                                     <ul>
                                                         <li>
-                                                            <input type="checkbox" id="node-2-1-0" checked="checked"/>
+                                                            <input type="checkbox" id="node-2-1-0" name="category" value="apple"/>
                                                             <label><input type="checkbox"/><span></span></label>
                                                             <label for="node-2-1-0">apple</label>
                                                         </li>
                                                         <li>
-                                                            <input type="checkbox" id="node-2-1-1" checked="checked"/>
+                                                            <input type="checkbox" id="node-2-1-1" name="category" value="banana"/>
                                                             <label><input type="checkbox"/><span></span></label>
                                                             <label for="node-2-1-1">banana</label>
                                                         </li>
                                                         <li>
-                                                            <input type="checkbox" id="node-2-1-2" checked="checked"/>
+                                                            <input type="checkbox" id="node-2-1-2" name="category" value="pumpkin"/>
                                                             <label><input type="checkbox"/><span></span></label>
                                                             <label for="node-2-1-2">pumpkin</label>
                                                         </li>
                                                         <li>
-                                                            <input type="checkbox" id="node-2-1-3" checked="checked"/>
+                                                            <input type="checkbox" id="node-2-1-3" name="category" value="zucchini"/>
                                                             <label><input type="checkbox"/><span></span></label>
                                                             <label for="node-2-1-3">zucchini</label>
                                                         </li>
                                                         <li>
-                                                            <input type="checkbox" id="node-2-1-4" checked="checked"/>
+                                                            <input type="checkbox" id="node-2-1-4" name="category" value="lemon"/>
                                                             <label><input type="checkbox"/><span></span></label>
                                                             <label for="node-2-1-4">lemon</label>
                                                         </li>
                                                         <li>
-                                                            <input type="checkbox" id="node-2-1-5" checked="checked"/>
+                                                            <input type="checkbox" id="node-2-1-5" name="category" value="raspberry"/>
                                                             <label><input type="checkbox"/><span></span></label>
                                                             <label for="node-2-1-5">raspberry</label>
                                                         </li>
                                                     </ul>
                                                 </li>
                                                 <li>
-                                                    <input type="checkbox" id="node-2-2" checked="checked"/>
+                                                    <input type="checkbox" id="node-2-2" name="category" value="donuts"/>
                                                     <label><input type="checkbox"/><span></span></label>
                                                     <label for="node-2-2">donuts</label>
                                                     <ul>
                                                         <li>
-                                                            <input type="checkbox" id="node-2-2-0" checked="checked"/>
+                                                            <input type="checkbox" id="node-2-2-0" name="category" value="cider"/>
                                                             <label><input type="checkbox"/><span></span></label>
                                                             <label for="node-2-1-0">cider</label>
                                                         </li>
                                                         <li>
-                                                            <input type="checkbox" id="node-2-2-1" checked="checked"/>
+                                                            <input type="checkbox" id="node-2-2-1" name="category" value="pumpkin spice"/>
                                                             <label><input type="checkbox"/><span></span></label>
                                                             <label for="node-2-1-1">pumpkin spice</label>
                                                         </li>
                                                         <li>
-                                                            <input type="checkbox" id="node-2-2-2" checked="checked"/>
+                                                            <input type="checkbox" id="node-2-2-2" name="category" value="vanilla"/>
                                                             <label><input type="checkbox"/><span></span></label>
                                                             <label for="node-2-1-2">vanilla</label>
                                                         </li>
                                                         <li>
-                                                            <input type="checkbox" id="node-2-2-3" checked="checked"/>
+                                                            <input type="checkbox" id="node-2-2-3" name="category" value="filled"/>
                                                             <label><input type="checkbox"/><span></span></label>
                                                             <label for="node-2-1-3">filled</label>
                                                         </li>
                                                         <li>
-                                                            <input type="checkbox" id="node-2-2-4" checked="checked"/>
+                                                            <input type="checkbox" id="node-2-2-4" name="category" value="berry"/>
                                                             <label><input type="checkbox"/><span></span></label>
                                                             <label for="node-2-1-4">berry</label>
                                                         </li>
                                                         <li>
-                                                            <input type="checkbox" id="node-2-2-5" checked="checked"/>
+                                                            <input type="checkbox" id="node-2-2-5" name="category" value="lemon"/>
                                                             <label><input type="checkbox"/><span></span></label>
                                                             <label for="node-2-1-5">lemon</label>
                                                         </li>
                                                     </ul>
                                                 </li>
                                                 <li>
-                                                    <input type="checkbox" id="node-2-3" checked="checked"/>
+                                                    <input type="checkbox" id="node-2-3" name="category" value="cookies"/>
                                                     <label><input type="checkbox"/><span></span></label>
                                                     <label for="node-2-3">cookies</label>
                                                     <ul>
                                                         <li>
-                                                            <input type="checkbox" id="node-2-3-0" checked="checked"/>
+                                                            <input type="checkbox" id="node-2-3-0" name="category" value="chocolate"/>
                                                             <label><input type="checkbox"/><span></span></label>
                                                             <label for="node-2-3-0">chocolate</label>
                                                         </li>
                                                         <li>
-                                                            <input type="checkbox" id="node-2-3-1" checked="checked"/>
+                                                            <input type="checkbox" id="node-2-3-1" name="category" value="oatmeal"/>
                                                             <label><input type="checkbox"/><span></span></label>
                                                             <label for="node-2-3-1">oatmeal</label>
                                                         </li>
                                                         <li>
-                                                            <input type="checkbox" id="node-2-3-2" checked="checked"/>
+                                                            <input type="checkbox" id="node-2-3-2" name="category" value="lemon"/>
                                                             <label><input type="checkbox"/><span></span></label>
                                                             <label for="node-2-3-2">lemon</label>
                                                         </li>
                                                         <li>
-                                                            <input type="checkbox" id="node-2-3-3" checked="checked"/>
+                                                            <input type="checkbox" id="node-2-3-3" name="category" value="no bakes"/>
                                                             <label><input type="checkbox"/><span></span></label>
                                                             <label for="node-2-3-3">no bakes</label>
                                                         </li>
                                                         <li>
-                                                            <input type="checkbox" id="node-2-3-4" checked="checked"/>
+                                                            <input type="checkbox" id="node-2-3-4" name="category" value="sugar"/>
                                                             <label><input type="checkbox"/><span></span></label>
                                                             <label for="node-2-3-4">sugar</label>
                                                         </li>
                                                         <li>
-                                                            <input type="checkbox" id="node-2-3-5" checked="checked"/>
+                                                            <input type="checkbox" id="node-2-3-5" name="category" value="spiced"/>
                                                             <label><input type="checkbox"/><span></span></label>
                                                             <label for="node-2-3-5">spiced</label>
                                                         </li>
                                                         <li>
-                                                            <input type="checkbox" id="node-2-3-6" checked="checked"/>
+                                                            <input type="checkbox" id="node-2-3-6" name="category" value="kitchen sink"/>
                                                             <label><input type="checkbox"/><span></span></label>
                                                             <label for="node-2-3-6">kitchen sink</label>
                                                         </li>
                                                         <li>
-                                                            <input type="checkbox" id="node-2-3-7" checked="checked"/>
+                                                            <input type="checkbox" id="node-2-3-7" name="category" value="macaroons"/>
                                                             <label><input type="checkbox"/><span></span></label>
                                                             <label for="node-2-3-7">macaroons</label>
                                                         </li>
                                                         <li>
-                                                            <input type="checkbox" id="node-2-3-8" checked="checked"/>
+                                                            <input type="checkbox" id="node-2-3-8" name="category" value="banana"/>
                                                             <label><input type="checkbox"/><span></span></label>
                                                             <label for="node-2-3-8">banana</label>
                                                         </li>
                                                         <li>
-                                                            <input type="checkbox" id="node-2-3-9" checked="checked"/>
+                                                            <input type="checkbox" id="node-2-3-9" name="category" value="carrot"/>
                                                             <label><input type="checkbox"/><span></span></label>
                                                             <label for="node-2-3-9">carrot</label>
                                                         </li>
                                                     </ul>
                                                 </li>
                                                 <li>
-                                                    <input type="checkbox" id="node-2-4" checked="checked"/>
+                                                    <input type="checkbox" id="node-2-4" name="category" value="pies"/>
                                                     <label><input type="checkbox"/><span></span></label>
                                                     <label for="node-2-4">pies</label>
                                                 </li>
                                                 <li>
-                                                    <input type="checkbox" id="node-2-5" checked="checked"/>
+                                                    <input type="checkbox" id="node-2-5" name="category" value="crisp"/>
                                                     <label><input type="checkbox"/><span></span></label>
                                                     <label for="node-2-5">crisp</label>
                                                     <ul>
                                                         <li>
-                                                            <input type="checkbox" id="node-2-5-0" checked="checked"/>
+                                                            <input type="checkbox" id="node-2-5-0" name="category" value="apple"/>
                                                             <label><input type="checkbox"/><span></span></label>
                                                             <label for="node-2-5-0">apple</label>
                                                         </li>
                                                     </ul>
                                                 </li>
                                                 <li>
-                                                    <input type="checkbox" id="node-2-6" checked="checked"/>
+                                                    <input type="checkbox" id="node-2-6" name="category" value="bars"/>
                                                     <label><input type="checkbox"/><span></span></label>
                                                     <label for="node-2-6">bars</label>
                                                     <ul>
                                                         <li>
-                                                            <input type="checkbox" id="node-2-6-0" checked="checked"/>
+                                                            <input type="checkbox" id="node-2-6-0" name="category" value="brownies"/>
                                                             <label><input type="checkbox"/><span></span></label>
                                                             <label for="node-2-6-0">brownies</label>
                                                         </li>
                                                         <li>
-                                                            <input type="checkbox" id="node-2-6-1" checked="checked"/>
+                                                            <input type="checkbox" id="node-2-6-1" name="category" value="fruit"/>
                                                             <label><input type="checkbox"/><span></span></label>
                                                             <label for="node-2-6-1">fruit</label>
                                                         </li>
                                                     </ul>
                                                 </li>
                                                 <li>
-                                                    <input type="checkbox" id="node-2-7" checked="checked"/>
+                                                    <input type="checkbox" id="node-2-7" name="category" value="cinnamon rolls"/>
                                                     <label><input type="checkbox"/><span></span></label>
                                                     <label for="node-2-7">cinnamon rolls</label>
                                                 </li>
                                                 <li>
-                                                    <input type="checkbox" id="node-2-8" checked="checked"/>
+                                                    <input type="checkbox" id="node-2-8" name="category" value="choux"/>
                                                     <label><input type="checkbox"/><span></span></label>
                                                     <label for="node-2-8">choux</label>
                                                 </li>
                                                 <li>
-                                                    <input type="checkbox" id="node-2-9" checked="checked"/>
+                                                    <input type="checkbox" id="node-2-9" name="category" value="macarons"/>
                                                     <label><input type="checkbox"/><span></span></label>
                                                     <label for="node-2-9">macarons</label>
                                                 </li>
                                                 <li>
-                                                    <input type="checkbox" id="node-2-10" checked="checked"/>
+                                                    <input type="checkbox" id="node-2-10" name="category" value="icing"/>
                                                     <label><input type="checkbox"/><span></span></label>
                                                     <label for="node-2-10">icing</label>
                                                 </li>
                                             </ul>
                                         </li>
                                         <li>
-                                            <input type="checkbox" id="node-3" checked="checked"/>
+                                            <input type="checkbox" id="node-3" name="category" value="bread"/>
                                             <label><input type="checkbox"/><span></span></label>
                                             <label for="node-3">bread</label>
                                         </li>
                                         <li>
-                                            <input type="checkbox" id="node-4"/>
+                                            <input type="checkbox" id="node-4" name="category" value="sides"/>
                                             <label><input type="checkbox"/><span></span></label>
                                             <label for="node-4">sides</label>
                                             <ul>
                                                 <li>
-                                                    <input type="checkbox" id="node-4-0" checked="checked"/>
+                                                    <input type="checkbox" id="node-4-0" name="category" value="vegetables"/>
                                                     <label><input type="checkbox"/><span></span></label>
                                                     <label for="node-4-0">vegetables</label>
                                                     <ul>
                                                         <li>
-                                                            <input type="checkbox" id="node-4-0-0" checked="checked"/>
+                                                            <input type="checkbox" id="node-4-0-0" name="category" value="sweet potato"/>
                                                             <label><input type="checkbox"/><span></span></label>
                                                             <label for="node-4-0-0">sweet potato</label>
                                                         </li>
                                                         <li>
-                                                            <input type="checkbox" id="node-4-0-1" checked="checked"/>
+                                                            <input type="checkbox" id="node-4-0-1" name="category" value="potato"/>
                                                             <label><input type="checkbox"/><span></span></label>
                                                             <label for="node-4-0-1">potato</label>
                                                         </li>
                                                         <li>
-                                                            <input type="checkbox" id="node-4-0-2" checked="checked"/>
+                                                            <input type="checkbox" id="node-4-0-2" name="category" value="carrot"/>
                                                             <label><input type="checkbox"/><span></span></label>
                                                             <label for="node-4-0-2">carrot</label>
                                                         </li>
                                                         <li>
-                                                            <input type="checkbox" id="node-4-0-3" checked="checked"/>
+                                                            <input type="checkbox" id="node-4-0-3" name="category" value="squash"/>
                                                             <label><input type="checkbox"/><span></span></label>
                                                             <label for="node-4-0-3">squash</label>
                                                         </li>
                                                         <li>
-                                                            <input type="checkbox" id="node-4-0-4" checked="checked"/>
+                                                            <input type="checkbox" id="node-4-0-4" name="category" value="cauliflower"/>
                                                             <label><input type="checkbox"/><span></span></label>
                                                             <label for="node-4-0-4">cauliflower</label>
                                                         </li>
                                                         <li>
-                                                            <input type="checkbox" id="node-4-0-5" checked="checked"/>
+                                                            <input type="checkbox" id="node-4-0-5" name="category" value="broccoli"/>
                                                             <label><input type="checkbox"/><span></span></label>
                                                             <label for="node-4-0-5">broccoli</label>
                                                         </li>
                                                         <li>
-                                                            <input type="checkbox" id="node-4-0-6" checked="checked"/>
+                                                            <input type="checkbox" id="node-4-0-6" name="category" value="brussels sprouts"/>
                                                             <label><input type="checkbox"/><span></span></label>
                                                             <label for="node-4-0-6">brussels sprouts</label>
                                                         </li>
                                                         <li>
-                                                            <input type="checkbox" id="node-4-0-7" checked="checked"/>
+                                                            <input type="checkbox" id="node-4-0-7" name="category" value="zucchini"/>
                                                             <label><input type="checkbox"/><span></span></label>
                                                             <label for="node-4-0-7">zucchini</label>
                                                         </li>
                                                         <li>
-                                                            <input type="checkbox" id="node-4-0-8" checked="checked"/>
+                                                            <input type="checkbox" id="node-4-0-8" name="category" value="cranberry"/>
                                                             <label><input type="checkbox"/><span></span></label>
                                                             <label for="node-4-0-8">cranberry</label>
                                                         </li>
                                                     </ul>
                                                 </li>
                                                 <li>
-                                                    <input type="checkbox" id="node-4-1" checked="checked"/>
+                                                    <input type="checkbox" id="node-4-1" name="category" value="spreads"/>
                                                     <label><input type="checkbox"/><span></span></label>
                                                     <label for="node-4-1">spreads</label>
                                                 </li>
                                                 <li>
-                                                    <input type="checkbox" id="node-4-2" checked="checked"/>
+                                                    <input type="checkbox" id="node-4-2" name="category" value="sauces"/>
                                                     <label><input type="checkbox"/><span></span></label>
                                                     <label for="node-4-2">sauces</label>
                                                 </li>
                                                 <li>
-                                                    <input type="checkbox" id="node-4-3" checked="checked"/>
+                                                    <input type="checkbox" id="node-4-3" name="category" value="dips"/>
                                                     <label><input type="checkbox"/><span></span></label>
                                                     <label for="node-4-3">dips</label>
                                                     <ul>
                                                         <li>
-                                                            <input type="checkbox" id="node-4-3-0" checked="checked"/>
+                                                            <input type="checkbox" id="node-4-3-0" name="category" value="guacamole"/>
                                                             <label><input type="checkbox"/><span></span></label>
                                                             <label for="node-4-3-0">guacamole</label>
                                                         </li>
                                                         <li>
-                                                            <input type="checkbox" id="node-4-3-1" checked="checked"/>
+                                                            <input type="checkbox" id="node-4-3-1" name="category" value="spinach"/>
                                                             <label><input type="checkbox"/><span></span></label>
                                                             <label for="node-4-3-1">spinach</label>
                                                         </li>
                                                         <li>
-                                                            <input type="checkbox" id="node-4-3-2" checked="checked"/>
+                                                            <input type="checkbox" id="node-4-3-2" name="category" value="hummus"/>
                                                             <label><input type="checkbox"/><span></span></label>
                                                             <label for="node-4-3-2">hummus</label>
                                                         </li>
                                                     </ul>
                                                 </li>
                                                 <li>
-                                                    <input type="checkbox" id="node-4-4" checked="checked"/>
+                                                    <input type="checkbox" id="node-4-4" name="category" value="spice blends"/>
                                                     <label><input type="checkbox"/><span></span></label>
                                                     <label for="node-4-4">spice blends</label>
                                                 </li>
                                                 <li>
-                                                    <input type="checkbox" id="node-4-5" checked="checked"/>
+                                                    <input type="checkbox" id="node-4-5" name="category" value="broths"/>
                                                     <label><input type="checkbox"/><span></span></label>
                                                     <label for="node-4-5">broths</label>
                                                 </li>
                                                 <li>
-                                                    <input type="checkbox" id="node-4-6" checked="checked"/>
+                                                    <input type="checkbox" id="node-4-6" name="category" value="grains"/>
                                                     <label><input type="checkbox"/><span></span></label>
                                                     <label for="node-4-6">grains</label>
                                                 </li>
                                                 <li>
-                                                    <input type="checkbox" id="node-4-7" checked="checked"/>
+                                                    <input type="checkbox" id="node-4-7" name="category" value="drinks"/>
                                                     <label><input type="checkbox"/><span></span></label>
                                                     <label for="node-4-7">drinks</label>
                                                 </li>
@@ -713,11 +728,6 @@
                                     </ul>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-6 text-center">
-                            <label for="image-input" class="image-upload">upload image</label>
-                            <input type="file" id="image-input" accept="image/jpeg, image/png, image/jpg">
-                            <div id="display-image"></div>
                         </div>
                     </div>
                     
@@ -733,11 +743,12 @@
         
         <script>
             jQuery(document).ready(function() {
-                let ingn, dirn = 4;
+                var ingn = 4; 
+                var dirn = 4;
                 // when add ingredient btn is clicked, append new html ing row in form
                 jQuery('#add_ing_btn').click(function(event) {
                     event.preventDefault();
-                    let html = '<div class="ingredients row mb-2" id="ingrow' + ingn + '"><div class="col-5"><input type="text" class="form-control" id="ing_' + ingn + '" placeholder="ingredient ' + ingn + '" required><div class="invalid-feedback">specify an ingredient</div></div><div class="col-2"><input type="text" class="form-control" id="amt_' + ingn + '" placeholder="amount ' + ingn + '" required><div class="invalid-feedback">specify an amount</div></div><div class="col-5"><input type="text" class="form-control" id="unit_' + ingn + '" placeholder="unit ' + ingn + '" required><div class="invalid-feedback">specify a unit</div></div></div>';
+                    let html = '<div class="ingredients row mb-2" id="ingrow' + ingn + '"><div class="col-2"><input type="text" class="form-control" id="amt_' + ingn + '" name="ingredients" placeholder="amount ' + ingn + '" required><div class="invalid-feedback">specify an amount</div></div><div class="col-4"><input type="text" class="form-control" id="unit_' + ingn + '" name="ingredients" placeholder="unit ' + ingn + '" required><div class="invalid-feedback">specify a unit</div></div><div class="col-6"><input type="text" class="form-control" id="ing_' + ingn + '" name="ingredients" placeholder="ingredient ' + ingn + '" required></div></div>'
                     jQuery('#ingredients').append(html);
                     ingn += 1;
                 });
@@ -751,7 +762,7 @@
                 // when add direction btn is clicked, append new html dir row in form
                 jQuery('#add_dir_btn').click(function(event) {
                     event.preventDefault();
-                    let html = '<div class="directions row" id="dirrow' + dirn + '"><div class="col-1 m-0"><label for="step_' + dirn + '">' + dirn + '. </label></div><div class="col-11"><input type="text" class="form-control" id="step_' + dirn + '" placeholder="step ' + dirn + '" style="margin-bottom: .5em;" required><div class="invalid-feedback">specify directions</div></div></div>';
+                    let html = '<div class="directions row" id="dirrow' + dirn + '"><div class="col-1 m-0"><label for="step_' + dirn + '">' + dirn + '. </label></div><div class="col-11"><input type="text" class="form-control" id="step_' + dirn + '" name="directions" placeholder="step ' + dirn + '" style="margin-bottom: .5em;" required><div class="invalid-feedback">specify directions</div></div></div>';
                     jQuery('#directions').append(html);
                     dirn += 1;
                 });
@@ -784,9 +795,10 @@
             })();
         </script>
 
-        <!-- load bootstrap -->
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy" crossorigin="anonymous"></script>
+        <!-- load jquery, popper, bootstrap -->
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.5.3/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> 
         <!-- load local js -->
         <script src="/main.js"></script>
     </body>

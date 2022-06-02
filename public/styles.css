@@ -11,10 +11,6 @@ body {
     padding: 1em;
 }
 
-h1, h2 {
-    text-align: center;
-}
-
 input[type="file"] {
     display: none;
 }
@@ -35,7 +31,8 @@ input[type="file"] {
 }
 
 #add_ing_btn, 
-#add_dir_btn {
+#add_dir_btn, 
+#print_btn {
     background-color:#748d9a;
     outline: 1px solid rgb(54, 66, 65) !important;
     color: white;
@@ -43,7 +40,8 @@ input[type="file"] {
 }
 
 #add_ing_btn:hover, 
-#add_dir_btn:hover {
+#add_dir_btn:hover, 
+#print_btn:hover {
     border-color:#485860 !important;
 }
 
@@ -69,7 +67,7 @@ input[type="file"] {
     align-self: center;
     margin: 1em 10% 0 10%;
     width: 80%;
-    height: 225px;
+    height: 150px;
     border: 1px solid black;
     background-position: center;
     background-size: cover;
@@ -84,6 +82,14 @@ input[type="file"] {
 
 .after_check_label {
     margin-left: 1em !important;
+}
+
+.centered {
+    text-align: center;
+}
+
+.green {
+    color: #3f4f3d;
 }
 
 .checktree,

@@ -51,6 +51,7 @@ mongo.MongoClient.connect(connectionString, { useUnifiedTopology: true })
     app.get('/id/:id', (req, res) => {
         // parsing the url
         // var id = new mongo.ObjectId(req.params.id);
+        console.log(req.params);
         var id = parseInt(req.params.id);
         console.log("lookup by rid", id);
         recipes.find({"rid": id}).toArray(function(err, result) {
@@ -72,16 +73,33 @@ mongo.MongoClient.connect(connectionString, { useUnifiedTopology: true })
     });
 
     app.get('/new', (req, res) => {
-        res.render('new.ejs', {recipes: ""})
-        .catch(error => console.error(error));
+        res.render('new.ejs');
     });
     
     app.post('/recipes', (req, res) => {
-        recipes.insertOne(req.body)
+        // get data from form
+        var recipe_data = req.body;
+        var ings = recipe_data['ingredients'];
+        // reformat ingredient list for easier display on recipe pages
+        var format_ings = [];
+        for (var i = 0; i < ings.length; i+=3) {
+            var ing = [ings[i], ings[i+1], ings[i+2]];
+            format_ings.push(ing);
+        }
+        // replace ing list with formatted version
+        recipe_data['ingredients'] = format_ings;
+        // insert recipe into mongodb
+        recipes.insertOne(recipe_data)
             .then(result => {
-                res.redirect('/');
+                // grab auto-incremented recipe id (added after insertOne)
+                recipes.find({}, {sort: {rid:-1}}).toArray()
+                .then(result => {
+                    // redirect to unique recipe details page with id in url
+                    res.redirect('/id/' + result[0].rid);
+                })
+                .catch(error => console.error(error));
             })
-            .catch(error => console.error(error));
+            .catch(error => console.error(error));       
     });
 
     app.put('/recipes', (req, res) => {

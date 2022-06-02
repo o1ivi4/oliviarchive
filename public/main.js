@@ -4,7 +4,6 @@ if (search_box) {
     search_box.addEventListener('keypress', function(event) {
         if (event.key === 'Enter') {
             event.preventDefault();
-            console.log(event.key + " pressed!");
             const query = document.querySelector('#query').value;
             const queryString = '/search/?recipe=' + query;
 
@@ -26,17 +25,17 @@ if (search_box) {
     });
 }
 
-$(".checktree").on("change", "label input:checkbox", function() {
-    var
-        checkbox = $(this),
-        nestedList = checkbox.parent().next().next(),
-        selectNestedListCheckbox = nestedList.find("label:not([for]) input:checkbox");
+// $(".checktree").on("change", "label input:checkbox", function() {
+//     var
+//         checkbox = $(this),
+//         nestedList = checkbox.parent().next().next(),
+//         selectNestedListCheckbox = nestedList.find("label:not([for]) input:checkbox");
  
-    if(checkbox.is(":checked")) {
-        return selectNestedListCheckbox.prop("checked", true);
-    }
-    selectNestedListCheckbox.prop("checked", false);
-});
+//     if(checkbox.is(":checked")) {
+//         return selectNestedListCheckbox.prop("checked", true);
+//     }
+//     selectNestedListCheckbox.prop("checked", false);
+// });
 
 const image_input = document.querySelector("#image-input");
 image_input.addEventListener("change", function() {
